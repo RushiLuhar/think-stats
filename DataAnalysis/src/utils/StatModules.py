@@ -3,7 +3,12 @@ Created on Jun 18, 2012
 
 @author: rushi
 '''
-from decimal import *
+from decimal import Decimal
+import math
+import Histogram
+
+def calculate_stdev(records, field):
+    return math.sqrt(calculate_variance(records, field))
 
 def calculate_variance(records, field):
     mean = calculate_mean(records, field)
@@ -27,6 +32,11 @@ def calculate_mean(records, field):
     else:
         print 'Cannot calculate an average for the date field'
 
+def generate_histogram(records, field):
+    h = Histogram()
+    val_list = [getattr(x, field) for x in records]
+    h.generate_histogram(val_list)
+    return h
 
 if __name__ == '__main__':
     pass

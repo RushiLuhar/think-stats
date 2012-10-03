@@ -13,13 +13,13 @@ class OHLCRecord(object):
     particular Date. 
     '''
     def __str__(self):
-        return 'Symbol: '+self.symbol+' Date: '+str(self.date)+' Open: '+str(self.open)+\
-            ' High: '+str(self.high)+' Low: '+str(self.low)+' Close: '+str(self.close)+\
-            ' Volume: '+str(self.volume)+' Adj. Close: '+ str(self.adj_close) 
+        return 'Symbol: ' + self.symbol + ' Date: ' + str(self.date) + ' Open: ' + str(self.open) + \
+            ' High: ' + str(self.high) + ' Low: ' + str(self.low) + ' Close: ' + str(self.close) + \
+            ' Volume: ' + str(self.volume) + ' Adj. Close: ' + str(self.adj_close) 
     
     def __init__(self):
         self.symbol = 'default'
-        self.date = datetime.strptime('1970-01-01','%Y-%m-%d')
+        self.date = datetime.strptime('1970-01-01', '%Y-%m-%d')
         self.open = Decimal(0)
         self.high = Decimal(0)
         self.low = Decimal(0)
@@ -46,7 +46,7 @@ class OHLCRecordCreator(object):
             lineIdx += 1
         fh.close()
         # Sort the file by timestamp
-        self.records.sort(key = lambda record: record.date)
+        self.records.sort(key=lambda record: record.date)
         print 'Completed Reading File: ', filename
         print 'Total Number of records: ', len(self.records)
         
@@ -69,18 +69,18 @@ class OHLCRecordCreator(object):
         return None
     
     
-    def get_date(self, date_string, date_format = '%Y-%m-%d'):
-        return datetime.strptime( date_string, date_format )
+    def get_date(self, date_string, date_format='%Y-%m-%d'):
+        return datetime.strptime(date_string, date_format)
     
     
     def get_fields(self):
         return [('date', 0),
-                ('open',1),
-                ('high',2),
-                ('low',3),
-                ('close',4),
-                ('volume',5),
-                ('adj_close',6)]
+                ('open', 1),
+                ('high', 2),
+                ('low', 3),
+                ('close', 4),
+                ('volume', 5),
+                ('adj_close', 6)]
       
       
     def add_record(self, record):
@@ -102,6 +102,6 @@ class OHLCRecordCreator(object):
 
 
 if __name__ == '__main__':
-    ohlc_creator =  OHLCRecordCreator()
-    ohlc_creator.read_file('VIX.csv', '../data','VIX')
+    ohlc_creator = OHLCRecordCreator()
+    ohlc_creator.read_file('VIX.csv', '../data', 'VIX')
     
